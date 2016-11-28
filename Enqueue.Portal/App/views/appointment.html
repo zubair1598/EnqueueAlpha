@@ -1,0 +1,86 @@
+﻿<div class="container">
+
+    <div class="row">
+        <div class="col-lg-2 col-md-6 col-sm-1 col-xs-1">
+            <h4 class="hs_heading" id="hs_appointment_form_link">Book an Appointment</h4>
+        </div>
+
+        <!--Book an Appointment start-->
+        <div class="col-lg-6 col-md-5 col-sm-12">
+
+            <div class="hs_appointment_form_div">
+                <!--<img src="http://placehold.it/512x345" width="512" height="387" alt="" />-->
+
+                <div class="hs_appointment_form">
+                    <form method="post">
+                        <div class="row">
+                            <br />
+                            <br />
+                            <div class="col-lg-6 col-md-7 col-sm-6">
+                                <div class="form-group">
+                                    <select class="form-control" id="slider_select_dep" ng-model="data.service" name="select_service">
+                                        <option>Select Services</option>
+                                        <option value="1">PEDIATIC CLINIC</option>
+                                        <option value="2">PHYSIOTHERAPY</option>
+                                        <option value="3">GENERAL SURGERY</option>
+                                        <option value="4">CANCER CARE</option>
+                                        <option value="5">ALL Services</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="slider_select_dep" ng-model="data.providerId" name="select_doctor">
+                                        <option>Select Doctors</option>
+                                        <option value="1">Dr. Amir Aziz</option>
+                                        <option value="2">Dr. Shahab Naqvi</option>
+                                        <option value="3">Dr. Irfan Rehmani </option>
+                                        <option value="4">Dr. Iffat Arif</option>
+
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="slider_select_dep" ng-model="data.locationId" name="select_location">
+                                        <option>Select Location</option>
+                                        <option value="1">Defence Phase 5</option>
+                                        <option value="2">Johar Town</option>
+                                        <option value="3">Gulberg 3</option>
+                                        <option value="4">Ghalib Market</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="slider_fname" ng-model="data.patientName" name="fname" placeholder="full Name  ( required )" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="slider_phone" name="phone" class="form-control" ng-model="data.phone" placeholder="Phone (required)" required>
+                                </div>
+                                <!--<div class="form-group">
+                                    <input type="date" id="slider_date" name="date"  class="form-control">
+                                </div>-->
+                            </div>
+                            <div class="col-lg-6 col-md-5 col-sm-6">
+                                <img src="/images/team/team_member2.png" alt="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-3">
+                                <button type="button" id="slider_book_apo" ng-click="getToken(data)" class="btn btn-default">Get Token</button>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+
+                            </div>
+                        </div>
+                        <p id="appointment_err"></p>
+                    </form>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <!--Book an Appointment end-->
+    </div>
+    <br />
+
+</div>

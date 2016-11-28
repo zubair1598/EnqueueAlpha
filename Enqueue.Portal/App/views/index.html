@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Health Care, health" />
+    <meta name="description" content="Health Care HTML Template" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- favicon links -->
+    <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+    <!--Google web fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+    <!-- main css -->
+    <link rel="stylesheet" href="../../Content/main.css" media="screen" />
+    <link href="../../Content/color/enqueue.css" rel="stylesheet" />
+    <link rel="stylesheet" id="theme-color" type="text/css" href="#" />
+
+    <!--page title-->
+    <title>Health Care HTML Template</title>
+    <link href="../../Content/animate.css" rel="stylesheet" />
+    <link href="../../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../../Content/font-awesome.css" rel="stylesheet" />
+    <link href="../../Content/jquery.bxslider.css" rel="stylesheet" />
+    <link href="../../Content/owl.carousel.css" rel="stylesheet" />
+    <link href="../../Content/Site.css" rel="stylesheet" />
+    <link href="../../Content/style.css" rel="stylesheet" />
+    <link href="../../Content/toaster.css" rel="stylesheet" />
+    
+    <!--<link href="../../Content/color/color.css" rel="stylesheet" />-->
+
+    <!--main js file start-->
+    <script src="../../Scripts/angular.min.js"></script>
+    <script src="../../Scripts/angular-route.js"></script>
+    <script type="text/javascript" src="../../Scripts/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../Scripts/respond.js"></script>
+    <script type="text/javascript" src="../../Scripts/modernizr-2.6.2.js"></script>
+    <script type="text/javascript" src="../../Scripts/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="../../Scripts/js/jquery.bxslider.js"></script>
+    <script type="text/javascript" src="../../Scripts/js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="../../Scripts/js/single-0.1.0.js"></script>
+    <script type="text/javascript" src="../../Scripts/js/custom.js"></script>
+    <script type="text/javascript" src="../../Scripts/angular-animate.js"></script>
+    <script type="text/javascript" src="../../Scripts/toaster.js"></script>
+    <script type="text/javascript" src="../../Scripts/angular-cookies.min.js"></script>
+
+    
+    <script src="../services/logger.js"></script>
+
+    
+    <script src="../controllers/main.js"></script>
+    <script src="../controllers/loginCtrl.js"></script>
+    <script src="../controllers/registerCtrl.js"></script>
+    <script src="../controllers/homeCtrl.js"></script>
+    <script src="../controllers/teamCtrl.js"></script>
+    <script src="../controllers/profileCtrl.js"></script>
+    <script src="../controllers/servicesCtrl.js"></script>
+    <script src="../controllers/appointmentCtrl.js"></script>
+    <script src="../controllers/indexCtrl.js"></script>
+    
+    <script src="../services/consumerService.js"></script>
+    <script src="../services/appointmentService.js"></script>
+   
+  
+</head>
+<body ng-app="myApp">
+    <!--Pre loader start-->
+    <div id="preloader">
+        <div id="status"><img src="~/images/loader.gif" id="preloader_image" width="36" height="36" alt="loading image" /></div>
+    </div>
+    <!--pre loader end-->
+    <!--header start-->
+    <header id="hs_header">
+        <div class="container" ng-controller="indexCtrl">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 clearfix">
+                    <div class="col-lg-2 col-md-2 col-sm-12">
+                        <div id="hs_logo"> <a href="#/home"> <img src="../../images/logo.png" alt=""> </a> </div>
+                        <!-- #logo -->
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12">
+                        <button type="button" class="hs_nav_toggle navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu<i class="fa fa-bars"></i></button>
+                        <nav>
+                            <ul class="hs_menu collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <li>
+                                    <a class="active">Home</a>
+                                    <ul>
+                                        <li><a href="index1.html">home 1</a></li>
+                                        <li><a href="one-page.html">One Page</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">about</a></li>
+                                <li>
+                                    <a href="#/services">services</a>
+                                    <ul>
+                                        <li><a href="#/services">Pediatric Clinic</a></li>
+                                        <li><a href="#/services">Dental Clinic</a></li>
+                                        <li><a href="#/services">General Surgery</a></li>
+                                        <li><a href="#/services">Physiotherapy</a></li>
+                                        <li><a href="#/services">Pregnancy Care</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#/team">Team</a>
+                                    <ul>
+                                        <li>
+                                            <a>Blog</a>
+                                            <ul>
+                                                <li><a href="blog-categories.html">Blog Categories</a></li>
+                                                <li><a href="blog-single-post.html">Blog Single Post</a></li>
+                                                <li><a href="blog-single-post-leftsidebar.html">Blog Leftsidebar</a></li>
+                                                <li><a href="blog-single-post-rightsidebar.html">Blog Rightsidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a>services</a>
+                                            <ul>
+                                                <li><a href="services-two-column.html">services Two Column</a></li>
+                                                <li><a href="services.html">services Three Column</a></li>
+                                                <li><a href="services-four-column.html">services Four Column</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a>profile</a>
+                                            <ul>
+                                                <li><a href="profile-single.html">profile single</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="elements.html">Elements</a></li>
+                                        <li><a href="typography.html">Typography</a></li>
+                                        <li><a href="columns.html">columns</a></li>
+                                        <li><a href="icon.html">icon</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#/profile">our profile</a></li>
+                                <li><a href="#/appointment">APPOINTMENT</a></li>
+                                <li><a href="#/contact">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-4">
+                        <div class="hs_social">
+                            <ul>
+                                <!--<li><a href=""><i class="fa fa-facebook"></i></a></li>
+                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="" id="hs_search"><i class="fa fa-search"></i></a></li>-->
+                                <li ng-hide="currentUserSignedIn"><a href="#/login"><i class="fonts"></i>Login</a></li>
+                                <li><a ng-hide="currentUserSignedIn" href="#/register"><i class="fonts"></i>Register</a></li>
+                                <li><span ng-show="currentUserSignedIn">{{currentUserName}}</span></li>
+                                <li><a ng-click="logout()" ng-show="currentUserSignedIn" href="#/home"><i class="fonts"></i>LogOut</a></li>
+</ul>
+                        </div>
+                        <div class="hs_search_box">
+                            <form class="form-inline" role="form">
+                                <div class="form-group has-success has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess4" placeholder="Search">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- #logo -->
+                    </div>
+                </div>
+                <!-- .col-md-12 -->
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- .container -->
+
+    </header>
+    <!--header end-->
+    <!--<div class="container">-->
+
+    <div ng-view></div>
+
+    <!--</div>-->
+
+
+
+    <div class="hs_copyright"> Copyright © 2014 healthcare HTML Template All Rights Reserved </div>
+   
+
+    <!--main js file end-->
+</body>
+</html>

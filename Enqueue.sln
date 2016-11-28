@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enqueue", "Enqueue\Enqueue.csproj", "{4F9D3D2B-3BCF-4572-B0F8-8D184DFBE485}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTester", "ApiTester\ApiTester.csproj", "{D439CA9E-624F-45A9-B54B-70793FE5FD9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enqueue.Data", "Enqueue.Data\Enqueue.Data.csproj", "{AAC27DC4-BDE4-4E4D-88BD-DF57244F4C04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enqueue.Portal", "Enqueue.Portal\Enqueue.Portal.csproj", "{9FCCD42D-E3B6-4D42-9B61-F1FDEB2BA071}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F9D3D2B-3BCF-4572-B0F8-8D184DFBE485}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F9D3D2B-3BCF-4572-B0F8-8D184DFBE485}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F9D3D2B-3BCF-4572-B0F8-8D184DFBE485}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F9D3D2B-3BCF-4572-B0F8-8D184DFBE485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D439CA9E-624F-45A9-B54B-70793FE5FD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D439CA9E-624F-45A9-B54B-70793FE5FD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D439CA9E-624F-45A9-B54B-70793FE5FD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D439CA9E-624F-45A9-B54B-70793FE5FD9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAC27DC4-BDE4-4E4D-88BD-DF57244F4C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAC27DC4-BDE4-4E4D-88BD-DF57244F4C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAC27DC4-BDE4-4E4D-88BD-DF57244F4C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAC27DC4-BDE4-4E4D-88BD-DF57244F4C04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FCCD42D-E3B6-4D42-9B61-F1FDEB2BA071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FCCD42D-E3B6-4D42-9B61-F1FDEB2BA071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FCCD42D-E3B6-4D42-9B61-F1FDEB2BA071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FCCD42D-E3B6-4D42-9B61-F1FDEB2BA071}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://imutex.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Enqueue\\Enqueue.csproj
+		SccProjectName1 = Enqueue
+		SccLocalPath1 = Enqueue
+		SccProjectUniqueName2 = ApiTester\\ApiTester.csproj
+		SccProjectName2 = ApiTester
+		SccLocalPath2 = ApiTester
+		SccProjectUniqueName3 = Enqueue.Data\\Enqueue.Data.csproj
+		SccProjectName3 = Enqueue.Data
+		SccLocalPath3 = Enqueue.Data
+		SccProjectUniqueName4 = Enqueue.Portal\\Enqueue.Portal.csproj
+		SccProjectName4 = Enqueue.Portal
+		SccLocalPath4 = Enqueue.Portal
+	EndGlobalSection
+EndGlobal

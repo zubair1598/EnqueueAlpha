@@ -1,0 +1,32 @@
+﻿
+.lblHeader {
+    margin: 0px auto;
+    color: #00ac7a;
+    font-size: 13px;
+}
+
+.loginMarginLeft {
+    margin-left: -10px !important;
+    margin-right: -10px !important;
+}
+
+.lblGen {
+    color: #00ac7a !important;
+    padding-left: 5px !important;
+}
+
+.fonts {
+    font-family: 'Raleway', sans-serif !important;
+}
+
+.logoBackg {
+    background: url(/images/logo.png);
+}
+
+.bg {
+	background: url('/images/appointment_form.jpg');
+	background-repeat: no-repeat;
+	/*background-position: top;*/
+    /*background-size: contain;*/
+    
+}

@@ -1,0 +1,78 @@
+﻿<div class="container">
+    <div class="row">
+
+        <div class="col-lg-1">
+            <h4 class="hs_heading">Register</h4>
+        </div>
+
+        <div class="col-lg-4">
+            <form name="userForm" ng-submit="submitForm(userForm.$valid,user)" novalidate>
+                <br /><br /> <br /><br />
+                <!-- Full Name -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.fullName.$invalid && !userForm.fullName.$pristine }">
+                    <label class="control-label" title="Full Name">
+                        Full Name*
+                    </label>
+                    <input type="text" name="fullName" placeholder="Enter Full Name" ng-model="user.fullName" class="form-control" required />
+                    <p ng-show="userForm.fullName.$invalid && !userForm.fullName.$pristine" class="help-block">Full Name is required.</p>
+                </div>
+
+                <!-- Mobile  No -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.mobileNo.$invalid && !userForm.mobileNo.$pristine }">
+                    <label class="control-label" title="Mobile No">
+                        Mobile No*
+                    </label>
+                    <input type="text" name="mobileNo" placeholder="Mobile No" ng-model="user.mobileNo" class="form-control" required />
+                    <p ng-show="userForm.mobileNo.$invalid && !userForm.mobileNo.$pristine" class="help-block">Mobile No is required.</p>
+                </div>
+
+                <!--Email -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                    <label class="control-label" title="Email">
+                        Email
+                    </label>
+                    <input type="text" name="email" placeholder="Email" ng-model="user.email" class="form-control" required />
+                    <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Email is required.</p>
+                </div>
+
+                <!-- userName -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.userName.$invalid && !userForm.userName.$pristine }">
+                    <label class="control-label" title="User Name">
+                        User Name
+                    </label>
+                    <input type="text" name="userName" placeholder="UserName" ng-model="user.userName" class="form-control" required />
+                    <p ng-show="userForm.userName.$invalid && !userForm.userName.$pristine" class="help-block">User Name is required.</p>
+                </div>
+
+                <!--password -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+                    <label class="control-label" title="Password">
+                        Password
+                    </label>
+                    <input type="password" name="password" placeholder="Password" ng-model="user.password" class="form-control" required />
+                    <p ng-show="userForm.Password.$invalid && !userForm.Password.$pristine" class="help-block">Password is required.</p>
+                </div>
+
+                <!-- confirmPassword -->
+                <div class="form-group" ng-class="{ 'has-error' : userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine }">
+                    <label class="control-label" title="ConfirmPassword">
+                        Confirm Password
+                    </label>
+                    <input type="password" name="confirmPassword" placeholder="Password" ng-model="user.confirmPassword" class="form-control" required />
+                    <p ng-show="userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine" class="help-block">Confirm Password is required.</p>
+                </div>
+
+                <!-- Button Submitt -->
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Register" class="btn btn-default" required />
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-lg-7">
+            <img src="/images/Side.png" style="padding-top:50px;" alt="">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+﻿<!--Pre loader start-->
+<div id="preloader">
+    <div id="status"><img src="~/images/loader.gif" id="preloader_image" width="36" height="36" alt="loading image" /></div>
+</div>
+<!--pre loader end-->
+<!-- color picker start -->
+<div id="style-switcher" class="hs_color_set">
+    <div>
+        <h3>color options</h3>
+        <ul class="colors">
+            <li>
+                <p class='colorchange' id='color'></p>
+            </li>
+            <li>
+                <p class='colorchange' id='color2'></p>
+            </li>
+            <li>
+                <p class='colorchange' id='color3'></p>
+            </li>
+            <li>
+                <p class='colorchange' id='color4'></p>
+            </li>
+            <li>
+                <p class='colorchange' id='color5'></p>
+            </li>
+            <li>
+                <p class='colorchange' id='style'></p>
+            </li>
+        </ul>
+        <h3>Theme Option</h3>
+        <select class="rock_themeoption" onchange="location = this.options[this.selectedIndex].value;">
+            <option>Select Option</option>
+            <option value="one-page.html">Single Page</option>
+            <option value="index.html">Multi Pages</option>
+        </select>
+        <p> </p>
+    </div>
+    <div class="bottom"> <a href="" class="settings"><i class="fa fa-gear"></i></a> </div>
+</div>
+<!-- color picker end -->
+<!--header start-->
+<header id="hs_header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 clearfix">
+                <div class="col-lg-2 col-md-2 col-sm-12">
+                    <div id="hs_logo">
+                        <a href='@Url.Action("Index", "Home")'> <img src='@Url.Content("../../images/logo.png")' alt=""> </a>
+                    </div>
+                    <!-- #logo -->
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12" id="myScrollspy">
+                    <button type="button" class="hs_nav_toggle navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu<i class="fa fa-bars"></i></button>
+                    <nav>
+                        <ul class="hs_menu collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <li>
+                                <a href='@Url.Action("Index", "Home")'>Home</a>
+                            </li>
+                            <li><a href="#section1">Appointment</a></li>
+                            <li>
+                                <a>services</a>
+                                <ul>
+                                    <li><a href="services.html">Pediatric Clinic</a></li>
+                                    <li><a href="services.html">Dental Clinic</a></li>
+                                    <li><a href="services.html">General Surgery</a></li>
+                                    <li><a href="services.html">Physiotherapy</a></li>
+                                    <li><a href="services.html">Pregnancy Care</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a>pages</a>
+                                <ul>
+                                    <li>
+                                        <a>Blog</a>
+                                        <ul>
+                                            <li><a href="blog-categories.html">Blog Categories</a></li>
+                                            <li><a href="blog-single-post.html">Blog Single Post</a></li>
+                                            <li><a href="blog-single-post-leftsidebar.html">Blog Leftsidebar</a></li>
+                                            <li><a href="blog-single-post-rightsidebar.html">Blog Rightsidebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a>services</a>
+                                        <ul>
+                                            <li><a href="services-two-column.html">services Two Column</a></li>
+                                            <li><a href="services.html">services Three Column</a></li>
+                                            <li><a href="services-four-column.html">services Four Column</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a>profile</a>
+                                        <ul>
+                                            <li><a href="profile-single.html">profile single</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="elements.html">Elements</a></li>
+                                    <li><a href="typography.html">Typography</a></li>
+                                    <li><a href="columns.html">columns</a></li>
+                                    <li><a href="icon.html">icon</a></li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
+                            <li><a href="blog-categories.html">our blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-4">
+                    <div class="hs_social">
+                        <ul>
+                            @*<li><a href=""><i class="fa fa-facebook"></i></a></li>
+                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="" id="hs_search"><i class="fa fa-search"></i></a></li>*@
+                            <li>
+                                @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "fonts" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "fonts" })
+                            </li>
+                        </ul>
+                    </div>
+                    @*<div class="hs_search_box">
+                            <form class="form-inline" role="form">
+                                <div class="form-group has-success has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess4" placeholder="Search">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                </div>
+                            </form>
+                        </div>*@
+
+                    <!-- #logo -->
+
+                </div>
+                <!-- .col-md-12 -->
+            </div>
+            <!-- .row -->
+        </div>
+    </div>
+    <!-- .container -->
+
+</header>
+<!--header end-->
+<!--slider start-->
+<!--slider end-->

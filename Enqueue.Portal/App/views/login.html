@@ -1,0 +1,53 @@
+﻿<div class="container">
+    <div class="row">
+
+        <div class="col-lg-1">
+            <h4 class="hs_heading">Log In</h4>
+        </div>
+        <div class="col-lg-4">
+            <br /><br /> <br /><br />
+            <h4>Use an existing account to log in.</h4>
+            <hr />
+            <div class="form-group">
+                <label class="control-label" title="User Name">
+                    User Name
+                </label>
+                <input type="text" placeholder="Enter User Name" data-ng-model="user.userName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" title="User Name">
+                    Password
+                </label>
+                <input type="password" placeholder="Enter Password" data-ng-model="user.password" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-0 col-md-12">
+                    <div class="checkbox">
+                        <label class="control-label" title="">
+                            Remember me
+                        </label>
+                        <input type="checkbox" />
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Log in" ng-click="login(user)" class="btn btn-default" />
+                </div>
+            </div>
+
+            <p class="form-group">
+
+                <a href="#/register">Register as a new user</a>
+            </p>
+        </div>
+        <div class="col-lg-7">
+            <!--<div class="hs_heading"></div>-->
+            <img src="/images/login.png" style="padding-bottom:50px;" alt="">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EnqueueModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Consumer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="11" />
+          <Property Name="Password" Type="nvarchar" MaxLength="6" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Longitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Latitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsWebUser" Type="bit" />
+          <Property Name="IsAppUser" Type="bit" />
+          <Property Name="ResetCount" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Longitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Latitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="ServiceProviderId" Type="int" />
+          <Property Name="AllowAdvanceBooking" Type="bit" />
+          <Property Name="TokenBookingOpen" Type="bit" Nullable="false" />
+          <Property Name="Timing1" Type="nvarchar" MaxLength="200" />
+          <Property Name="Timing2" Type="nvarchar" MaxLength="200" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+          <Property Name="TokenStartTime" Type="time" Precision="7" />
+          <Property Name="TokenEndTime" Type="time" Precision="7" />
+          <Property Name="ServiceStartTime" Type="time" Precision="7" />
+          <Property Name="ServiceEndTime" Type="time" Precision="7" />
+          <Property Name="Fee" Type="money" />
+          <Property Name="TokenLimit" Type="int" />
+          <Property Name="iTokenCharges" Type="money" />
+          <Property Name="iTokenLimit" Type="int" />
+          <Property Name="OffDays" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="LocationHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="ServiceProviderId" Type="int" />
+          <Property Name="Day" Type="int" />
+          <Property Name="BookingStartTime" Type="datetime" Nullable="false" />
+          <Property Name="BookingEndTime" Type="datetime" />
+          <Property Name="ServiceStartTime" Type="datetime" />
+          <Property Name="ServiceEndTime" Type="datetime" />
+          <Property Name="ManualTokens" Type="int" Nullable="false" />
+          <Property Name="iTokens" Type="int" Nullable="false" />
+          <Property Name="iTokensCompleted" Type="int" Nullable="false" />
+          <Property Name="iTokensSkip" Type="int" />
+          <Property Name="iTokensNoShow" Type="int" />
+          <Property Name="ManualTokensCompleted" Type="int" Nullable="false" />
+          <Property Name="ManualTokensSkip" Type="int" />
+          <Property Name="ManualTokensNoShow" Type="int" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="City" Type="int" />
+          <Property Name="Longitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Latitude" Type="decimal" Precision="12" Scale="9" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ServiceProvider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegistrationNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Website" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Longitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Latitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="OrganizationId" Type="int" />
+        </EntityType>
+        <EntityType Name="ServiceProviderOrganizations">
+          <Key>
+            <PropertyRef Name="ServiceProviderId" />
+            <PropertyRef Name="OrganizationId" />
+          </Key>
+          <Property Name="ServiceProviderId" Type="int" Nullable="false" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="ServiceProviderServices">
+          <Key>
+            <PropertyRef Name="ServiceProviderId" />
+            <PropertyRef Name="ServiceId" />
+          </Key>
+          <Property Name="ServiceProviderId" Type="int" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Token" Type="int" />
+          <Property Name="ServiceProviderId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="ConsumerId" Type="int" />
+          <Property Name="Day" Type="int" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="tinyint" />
+          <Property Name="CheckinTime" Type="time" Precision="7" />
+          <Property Name="CompletionTime" Type="time" Precision="7" />
+          <Property Name="IsCurrent" Type="bit" Nullable="false" />
+          <Property Name="IsiToken" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TokenComments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TokenId" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Comments" Type="varchar" MaxLength="500" />
+          <Property Name="Rating" Type="int" />
+        </EntityType>
+        <EntityType Name="TokenFeedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TokenId" Type="int" />
+          <Property Name="Rating" Type="tinyint" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TokenPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TokenId" Type="int" Nullable="false" />
+          <Property Name="PaymentAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IsPayment" Type="bit" />
+          <Property Name="IsFollowUp" Type="bit" />
+        </EntityType>
+        <EntityType Name="TokenStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_LocationHistory_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="LocationHistory" Type="Self.LocationHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LocationHistory">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationHistory_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="0..1" />
+          <End Role="LocationHistory" Type="Self.LocationHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LocationHistory">
+              <PropertyRef Name="ServiceProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceProviderOrganizations_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="ServiceProviderOrganizations" Type="Self.ServiceProviderOrganizations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceProviderOrganizations">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceProviderOrganizations_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="1" />
+          <End Role="ServiceProviderOrganizations" Type="Self.ServiceProviderOrganizations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceProviderOrganizations">
+              <PropertyRef Name="ServiceProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceProviderServices_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ServiceProviderServices" Type="Self.ServiceProviderServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceProviderServices">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceProviderServices_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="1" />
+          <End Role="ServiceProviderServices" Type="Self.ServiceProviderServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceProviderServices">
+              <PropertyRef Name="ServiceProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_Consumer">
+          <End Role="Consumer" Type="Self.Consumer" Multiplicity="0..1" />
+          <End Role="Token" Type="Self.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consumer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="ConsumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Token" Type="Self.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="0..1" />
+          <End Role="Token" Type="Self.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="ServiceProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_TokenStatus">
+          <End Role="TokenStatus" Type="Self.TokenStatus" Multiplicity="0..1" />
+          <End Role="Token" Type="Self.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenFeedback_Token">
+          <End Role="Token" Type="Self.Token" Multiplicity="0..1" />
+          <End Role="TokenFeedback" Type="Self.TokenFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Token">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TokenFeedback">
+              <PropertyRef Name="TokenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CloseBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationId" Type="int" Mode="In" />
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="int" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="CloseSession" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationId" Type="int" Mode="In" />
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="int" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="CreateUpdateConsumer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Longitude" Type="decimal" Mode="In" />
+          <Parameter Name="Latitude" Type="decimal" Mode="In" />
+          <Parameter Name="IsWebUser" Type="bit" Mode="In" />
+          <Parameter Name="IsAppUser" Type="bit" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="CreateUpdateServiceProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Qualification" Type="nvarchar" Mode="In" />
+          <Parameter Name="RegistrationNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Website" Type="nvarchar" Mode="In" />
+          <Parameter Name="OrganizationId" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="GetCurrentToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsumerId" Type="int" Mode="In" />
+          <Parameter Name="LocationId" Type="int" Mode="In" />
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetLocationDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetLocations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="GetOrganizations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetOrganizationsMembers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationId" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="GetServiceMembers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ServiceId" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="GetServiceProviderProfile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="code" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="GetServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetTodayTokens" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationId" Type="int" Mode="In" />
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="int" Mode="In" />
+        </Function>
+        <Function Name="IsConsumerUserNameExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="IsServiceProviderUserNameExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="IssueToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IsiToken" Type="bit" Mode="In" />
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+          <Parameter Name="LocationId" Type="int" Mode="In" />
+          <Parameter Name="ConsumerId" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="int" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Debug" Type="bit" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="LoginConsumer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="LoginServiceProvider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="RegisterConsumer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsWebUser" Type="bit" Mode="In" />
+          <Parameter Name="IsAppUser" Type="bit" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="StartBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationId" Type="int" Mode="In" />
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="int" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="StartSession" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationId" Type="int" Mode="In" />
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="int" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="udfCurrentTime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="time" />
+        <Function Name="udfGetCurrentDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="UpdateTokenFeedback" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+          <Parameter Name="LocationId" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="int" Mode="In" />
+          <Parameter Name="Token" Type="int" Mode="In" />
+          <Parameter Name="Comments" Type="nvarchar" Mode="In" />
+          <Parameter Name="Rating" Type="tinyint" Mode="In" />
+          <Parameter Name="Debug" Type="bit" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="UpdateTokenStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Status" Type="int" Mode="In" />
+          <Parameter Name="Debug" Type="bit" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="UpdateTokenStatus_Old" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ServiceProviderId" Type="int" Mode="In" />
+          <Parameter Name="LocationId" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="int" Mode="In" />
+          <Parameter Name="Token" Type="int" Mode="In" />
+          <Parameter Name="Status" Type="tinyint" Mode="In" />
+          <Parameter Name="Debug" Type="bit" Mode="In" />
+          <Parameter Name="ErrorMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="EnqueueModelStoreContainer">
+          <EntitySet Name="Consumer" EntityType="Self.Consumer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationHistory" EntityType="Self.LocationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceProvider" EntityType="Self.ServiceProvider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceProviderOrganizations" EntityType="Self.ServiceProviderOrganizations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceProviderServices" EntityType="Self.ServiceProviderServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Token" EntityType="Self.Token" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TokenComments" EntityType="Self.TokenComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TokenFeedback" EntityType="Self.TokenFeedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TokenPayment" EntityType="Self.TokenPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TokenStatus" EntityType="Self.TokenStatus" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LocationHistory_Location" Association="Self.FK_LocationHistory_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="LocationHistory" EntitySet="LocationHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationHistory_ServiceProvider" Association="Self.FK_LocationHistory_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProvider" />
+            <End Role="LocationHistory" EntitySet="LocationHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceProviderOrganizations_Organization" Association="Self.FK_ServiceProviderOrganizations_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="ServiceProviderOrganizations" EntitySet="ServiceProviderOrganizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceProviderOrganizations_ServiceProvider" Association="Self.FK_ServiceProviderOrganizations_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProvider" />
+            <End Role="ServiceProviderOrganizations" EntitySet="ServiceProviderOrganizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceProviderServices_Service" Association="Self.FK_ServiceProviderServices_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ServiceProviderServices" EntitySet="ServiceProviderServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceProviderServices_ServiceProvider" Association="Self.FK_ServiceProviderServices_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProvider" />
+            <End Role="ServiceProviderServices" EntitySet="ServiceProviderServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_Consumer" Association="Self.FK_Token_Consumer">
+            <End Role="Consumer" EntitySet="Consumer" />
+            <End Role="Token" EntitySet="Token" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_Location" Association="Self.FK_Token_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Token" EntitySet="Token" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_ServiceProvider" Association="Self.FK_Token_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProvider" />
+            <End Role="Token" EntitySet="Token" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_TokenStatus" Association="Self.FK_Token_TokenStatus">
+            <End Role="TokenStatus" EntitySet="TokenStatus" />
+            <End Role="Token" EntitySet="Token" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenFeedback_Token" Association="Self.FK_TokenFeedback_Token">
+            <End Role="Token" EntitySet="Token" />
+            <End Role="TokenFeedback" EntitySet="TokenFeedback" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EnqueueModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Consumer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Latitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsWebUser" Type="Boolean" />
+          <Property Name="IsAppUser" Type="Boolean" />
+          <Property Name="ResetCount" Type="Byte" />
+          <NavigationProperty Name="Tokens" Relationship="Self.FK_Token_Consumer" FromRole="Consumer" ToRole="Token" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Latitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="ServiceProviderId" Type="Int32" />
+          <Property Name="AllowAdvanceBooking" Type="Boolean" />
+          <Property Name="TokenBookingOpen" Type="Boolean" Nullable="false" />
+          <Property Name="Timing1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Timing2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TokenStartTime" Type="Time" Precision="7" />
+          <Property Name="TokenEndTime" Type="Time" Precision="7" />
+          <Property Name="ServiceStartTime" Type="Time" Precision="7" />
+          <Property Name="ServiceEndTime" Type="Time" Precision="7" />
+          <Property Name="Fee" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TokenLimit" Type="Int32" />
+          <Property Name="iTokenCharges" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="iTokenLimit" Type="Int32" />
+          <Property Name="OffDays" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="LocationHistories" Relationship="Self.FK_LocationHistory_Location" FromRole="Location" ToRole="LocationHistory" />
+          <NavigationProperty Name="Tokens" Relationship="Self.FK_Token_Location" FromRole="Location" ToRole="Token" />
+        </EntityType>
+        <EntityType Name="LocationHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="ServiceProviderId" Type="Int32" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="BookingStartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BookingEndTime" Type="DateTime" Precision="3" />
+          <Property Name="ServiceStartTime" Type="DateTime" Precision="3" />
+          <Property Name="ServiceEndTime" Type="DateTime" Precision="3" />
+          <Property Name="ManualTokens" Type="Int32" Nullable="false" />
+          <Property Name="iTokens" Type="Int32" Nullable="false" />
+          <Property Name="iTokensCompleted" Type="Int32" Nullable="false" />
+          <Property Name="iTokensSkip" Type="Int32" />
+          <Property Name="iTokensNoShow" Type="Int32" />
+          <Property Name="ManualTokensCompleted" Type="Int32" Nullable="false" />
+          <Property Name="ManualTokensSkip" Type="Int32" />
+          <Property Name="ManualTokensNoShow" Type="Int32" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_LocationHistory_Location" FromRole="LocationHistory" ToRole="Location" />
+          <NavigationProperty Name="ServiceProvider" Relationship="Self.FK_LocationHistory_ServiceProvider" FromRole="LocationHistory" ToRole="ServiceProvider" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="Int32" />
+          <Property Name="Longitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Latitude" Type="Decimal" Precision="12" Scale="9" />
+          <NavigationProperty Name="ServiceProviderOrganizations" Relationship="Self.FK_ServiceProviderOrganizations_Organization" FromRole="Organization" ToRole="ServiceProviderOrganizations" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ServiceProviderServices" Relationship="Self.FK_ServiceProviderServices_Service" FromRole="Service" ToRole="ServiceProviderServices" />
+        </EntityType>
+        <EntityType Name="ServiceProvider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Latitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int32" />
+          <NavigationProperty Name="LocationHistories" Relationship="Self.FK_LocationHistory_ServiceProvider" FromRole="ServiceProvider" ToRole="LocationHistory" />
+          <NavigationProperty Name="ServiceProviderOrganizations" Relationship="Self.FK_ServiceProviderOrganizations_ServiceProvider" FromRole="ServiceProvider" ToRole="ServiceProviderOrganizations" />
+          <NavigationProperty Name="ServiceProviderServices" Relationship="Self.FK_ServiceProviderServices_ServiceProvider" FromRole="ServiceProvider" ToRole="ServiceProviderServices" />
+          <NavigationProperty Name="Tokens" Relationship="Self.FK_Token_ServiceProvider" FromRole="ServiceProvider" ToRole="Token" />
+        </EntityType>
+        <EntityType Name="ServiceProviderOrganization">
+          <Key>
+            <PropertyRef Name="ServiceProviderId" />
+            <PropertyRef Name="OrganizationId" />
+          </Key>
+          <Property Name="ServiceProviderId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK_ServiceProviderOrganizations_Organization" FromRole="ServiceProviderOrganizations" ToRole="Organization" />
+          <NavigationProperty Name="ServiceProvider" Relationship="Self.FK_ServiceProviderOrganizations_ServiceProvider" FromRole="ServiceProviderOrganizations" ToRole="ServiceProvider" />
+        </EntityType>
+        <EntityType Name="ServiceProviderService">
+          <Key>
+            <PropertyRef Name="ServiceProviderId" />
+            <PropertyRef Name="ServiceId" />
+          </Key>
+          <Property Name="ServiceProviderId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_ServiceProviderServices_Service" FromRole="ServiceProviderServices" ToRole="Service" />
+          <NavigationProperty Name="ServiceProvider" Relationship="Self.FK_ServiceProviderServices_ServiceProvider" FromRole="ServiceProviderServices" ToRole="ServiceProvider" />
+        </EntityType>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Token1" Type="Int32" />
+          <Property Name="ServiceProviderId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="ConsumerId" Type="Int32" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Byte" />
+          <Property Name="CheckinTime" Type="Time" Precision="7" />
+          <Property Name="CompletionTime" Type="Time" Precision="7" />
+          <Property Name="IsCurrent" Type="Boolean" Nullable="false" />
+          <Property Name="IsiToken" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Consumer" Relationship="Self.FK_Token_Consumer" FromRole="Token" ToRole="Consumer" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Token_Location" FromRole="Token" ToRole="Location" />
+          <NavigationProperty Name="ServiceProvider" Relationship="Self.FK_Token_ServiceProvider" FromRole="Token" ToRole="ServiceProvider" />
+          <NavigationProperty Name="TokenStatu" Relationship="Self.FK_Token_TokenStatus" FromRole="Token" ToRole="TokenStatus" />
+          <NavigationProperty Name="TokenFeedbacks" Relationship="Self.FK_TokenFeedback_Token" FromRole="Token" ToRole="TokenFeedback" />
+        </EntityType>
+        <EntityType Name="TokenFeedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TokenId" Type="Int32" />
+          <Property Name="Rating" Type="Byte" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Token" Relationship="Self.FK_TokenFeedback_Token" FromRole="TokenFeedback" ToRole="Token" />
+        </EntityType>
+        <EntityType Name="TokenStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tokens" Relationship="Self.FK_Token_TokenStatus" FromRole="TokenStatus" ToRole="Token" />
+        </EntityType>
+        <Association Name="FK_Token_Consumer">
+          <End Role="Consumer" Type="Self.Consumer" Multiplicity="0..1" />
+          <End Role="Token" Type="Self.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consumer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="ConsumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationHistory_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="LocationHistory" Type="Self.LocationHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LocationHistory">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Token" Type="Self.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationHistory_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="0..1" />
+          <End Role="LocationHistory" Type="Self.LocationHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LocationHistory">
+              <PropertyRef Name="ServiceProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceProviderOrganizations_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="ServiceProviderOrganizations" Type="Self.ServiceProviderOrganization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceProviderOrganizations">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceProviderServices_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ServiceProviderServices" Type="Self.ServiceProviderService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceProviderServices">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceProviderOrganizations_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="1" />
+          <End Role="ServiceProviderOrganizations" Type="Self.ServiceProviderOrganization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceProviderOrganizations">
+              <PropertyRef Name="ServiceProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceProviderServices_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="1" />
+          <End Role="ServiceProviderServices" Type="Self.ServiceProviderService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceProviderServices">
+              <PropertyRef Name="ServiceProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="0..1" />
+          <End Role="Token" Type="Self.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="ServiceProviderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Token_TokenStatus">
+          <End Role="TokenStatus" Type="Self.TokenStatu" Multiplicity="0..1" />
+          <End Role="Token" Type="Self.Token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Token">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenFeedback_Token">
+          <End Role="Token" Type="Self.Token" Multiplicity="0..1" />
+          <End Role="TokenFeedback" Type="Self.TokenFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Token">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TokenFeedback">
+              <PropertyRef Name="TokenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EnqueueEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Consumers" EntityType="Self.Consumer" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="LocationHistories" EntityType="Self.LocationHistory" />
+          <EntitySet Name="Organizations" EntityType="Self.Organization" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="ServiceProviders" EntityType="Self.ServiceProvider" />
+          <EntitySet Name="ServiceProviderOrganizations" EntityType="Self.ServiceProviderOrganization" />
+          <EntitySet Name="ServiceProviderServices" EntityType="Self.ServiceProviderService" />
+          <EntitySet Name="Tokens" EntityType="Self.Token" />
+          <EntitySet Name="TokenFeedbacks" EntityType="Self.TokenFeedback" />
+          <EntitySet Name="TokenStatus" EntityType="Self.TokenStatu" />
+          <AssociationSet Name="FK_Token_Consumer" Association="Self.FK_Token_Consumer">
+            <End Role="Consumer" EntitySet="Consumers" />
+            <End Role="Token" EntitySet="Tokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationHistory_Location" Association="Self.FK_LocationHistory_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="LocationHistory" EntitySet="LocationHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_Location" Association="Self.FK_Token_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Token" EntitySet="Tokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationHistory_ServiceProvider" Association="Self.FK_LocationHistory_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProviders" />
+            <End Role="LocationHistory" EntitySet="LocationHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceProviderOrganizations_Organization" Association="Self.FK_ServiceProviderOrganizations_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="ServiceProviderOrganizations" EntitySet="ServiceProviderOrganizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceProviderServices_Service" Association="Self.FK_ServiceProviderServices_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="ServiceProviderServices" EntitySet="ServiceProviderServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceProviderOrganizations_ServiceProvider" Association="Self.FK_ServiceProviderOrganizations_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProviders" />
+            <End Role="ServiceProviderOrganizations" EntitySet="ServiceProviderOrganizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceProviderServices_ServiceProvider" Association="Self.FK_ServiceProviderServices_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProviders" />
+            <End Role="ServiceProviderServices" EntitySet="ServiceProviderServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_ServiceProvider" Association="Self.FK_Token_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProviders" />
+            <End Role="Token" EntitySet="Tokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Token_TokenStatus" Association="Self.FK_Token_TokenStatus">
+            <End Role="TokenStatus" EntitySet="TokenStatus" />
+            <End Role="Token" EntitySet="Tokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenFeedback_Token" Association="Self.FK_TokenFeedback_Token">
+            <End Role="Token" EntitySet="Tokens" />
+            <End Role="TokenFeedback" EntitySet="TokenFeedbacks" />
+          </AssociationSet>
+          <FunctionImport Name="CloseBooking">
+            <Parameter Name="LocationId" Mode="In" Type="Int32" />
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="Int32" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CloseSession">
+            <Parameter Name="LocationId" Mode="In" Type="Int32" />
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="Int32" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateUpdateConsumer">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="FullName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Longitude" Mode="In" Type="Decimal" />
+            <Parameter Name="Latitude" Mode="In" Type="Decimal" />
+            <Parameter Name="IsWebUser" Mode="In" Type="Boolean" />
+            <Parameter Name="IsAppUser" Mode="In" Type="Boolean" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateUpdateServiceProvider">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Qualification" Mode="In" Type="String" />
+            <Parameter Name="RegistrationNo" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="ContactNo" Mode="In" Type="String" />
+            <Parameter Name="Website" Mode="In" Type="String" />
+            <Parameter Name="OrganizationId" Mode="In" Type="Int32" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetLocationDetails" ReturnType="Collection(EnqueueModel.GetLocationDetails_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetLocations" ReturnType="Collection(EnqueueModel.GetLocations_Result)">
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetOrganizations">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetOrganizationsMembers" ReturnType="Collection(EnqueueModel.GetOrganizationsMembers_Result)">
+            <Parameter Name="OrganizationId" Mode="In" Type="Int32" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetServiceMembers" ReturnType="Collection(EnqueueModel.GetServiceMembers_Result)">
+            <Parameter Name="ServiceId" Mode="In" Type="Int32" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetServiceProviderProfile" ReturnType="Collection(EnqueueModel.GetServiceProviderProfile_Result)">
+            <Parameter Name="code" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetServices" ReturnType="Collection(EnqueueModel.GetServices_Result)" />
+          <FunctionImport Name="IsConsumerUserNameExists" ReturnType="Collection(Int32)">
+          <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="IsServiceProviderUserNameExists" ReturnType="Collection(Int32)">
+          <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LoginConsumer" ReturnType="Collection(EnqueueModel.LoginConsumer_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LoginServiceProvider" ReturnType="Collection(EnqueueModel.LoginServiceProvider_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegisterConsumer">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="FullName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="IsWebUser" Mode="In" Type="Boolean" />
+            <Parameter Name="IsAppUser" Mode="In" Type="Boolean" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="StartBooking">
+            <Parameter Name="LocationId" Mode="In" Type="Int32" />
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="Int32" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="StartSession">
+            <Parameter Name="LocationId" Mode="In" Type="Int32" />
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="Int32" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateTokenFeedback">
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+            <Parameter Name="LocationId" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="Int32" />
+            <Parameter Name="Token" Mode="In" Type="Int32" />
+            <Parameter Name="Comments" Mode="In" Type="String" />
+            <Parameter Name="Rating" Mode="In" Type="Byte" />
+            <Parameter Name="Debug" Mode="In" Type="Boolean" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateTokenStatus">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Status" Mode="In" Type="Int32" />
+            <Parameter Name="Debug" Mode="In" Type="Boolean" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateTokenStatus_Old">
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+            <Parameter Name="LocationId" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="Int32" />
+            <Parameter Name="Token" Mode="In" Type="Int32" />
+            <Parameter Name="Status" Mode="In" Type="Byte" />
+            <Parameter Name="Debug" Mode="In" Type="Boolean" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCurrentToken" ReturnType="Collection(EnqueueModel.GetCurrentToken_Result)">
+            <Parameter Name="ConsumerId" Mode="In" Type="Int32" />
+            <Parameter Name="LocationId" Mode="In" Type="Int32" />
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetTodayTokens" ReturnType="Collection(EnqueueModel.GetTodayTokens_Result)">
+            <Parameter Name="LocationId" Mode="In" Type="Int32" />
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="IssueToken" ReturnType="Collection(EnqueueModel.IssueToken_Result)">
+            <Parameter Name="IsiToken" Mode="In" Type="Boolean" />
+            <Parameter Name="ServiceProviderId" Mode="In" Type="Int32" />
+            <Parameter Name="LocationId" Mode="In" Type="Int32" />
+            <Parameter Name="ConsumerId" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="Int32" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Debug" Mode="In" Type="Boolean" />
+            <Parameter Name="ErrorMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="TokenComments" EntityType="EnqueueModel.TokenComment" />
+          <EntitySet Name="TokenPayments" EntityType="EnqueueModel.TokenPayment" />
+        </EntityContainer>
+        <ComplexType Name="GetLocationDetails_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="ServiceProviderId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="Latitude" Nullable="true" Precision="12" Scale="9" />
+          <Property Type="Decimal" Name="Longitude" Nullable="true" Precision="12" Scale="9" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="AllowAdvanceBooking" Nullable="true" />
+          <Property Type="Boolean" Name="TokenBookingOpen" Nullable="false" />
+          <Property Type="String" Name="Timing1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Timing2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="500" />
+          <Property Type="Time" Name="TokenStartTime" Nullable="true" />
+          <Property Type="Time" Name="TokenEndTime" Nullable="true" />
+          <Property Type="Time" Name="ServiceStartTime" Nullable="true" />
+          <Property Type="Time" Name="ServiceEndTime" Nullable="true" />
+          <Property Type="Decimal" Name="Fee" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="TokenLimit" Nullable="true" />
+          <Property Type="Int32" Name="iTokenLimit" Nullable="true" />
+          <Property Type="String" Name="OffDays" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetLocations_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Timing1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Timing2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Note" Nullable="true" MaxLength="500" />
+          <Property Type="Decimal" Name="Fee" Nullable="true" Precision="19" />
+          <Property Type="String" Name="OffDays" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetOrganizationsMembers_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Qualification" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RegistrationNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Website" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetServiceMembers_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Qualification" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RegistrationNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Website" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetServiceProviderProfile_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Qualification" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RegistrationNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Website" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetServices_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="LoginConsumer_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="15" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="LoginServiceProvider_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Qualification" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RegistrationNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Website" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetCurrentToken_Result">
+          <Property Type="Int32" Name="CurrentTokenId" Nullable="true" />
+          <Property Type="Int32" Name="CurrentToken" Nullable="true" />
+          <Property Type="String" Name="CurrentName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CurrentPhone" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="NextTokenId" Nullable="true" />
+          <Property Type="Int32" Name="NextToken" Nullable="true" />
+          <Property Type="String" Name="NextName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NextPhone" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="YourTokenId" Nullable="true" />
+          <Property Type="Int32" Name="YourToken" Nullable="true" />
+          <Property Type="DateTime" Name="Today" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="NextAvailable" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetTodayTokens_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="Token" Nullable="true" />
+          <Property Type="Int32" Name="ServiceProviderId" Nullable="true" />
+          <Property Type="Int32" Name="LocationId" Nullable="true" />
+          <Property Type="Int32" Name="ConsumerId" Nullable="true" />
+          <Property Type="Int32" Name="Day" Nullable="true" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="Byte" Name="Status" Nullable="true" />
+          <Property Type="Time" Name="CheckinTime" Nullable="true" />
+          <Property Type="Time" Name="CompletionTime" Nullable="true" />
+          <Property Type="Boolean" Name="IsCurrent" Nullable="false" />
+          <Property Type="Boolean" Name="IsiToken" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="IssueToken_Result">
+          <Property Type="Int32" Name="YourToken" Nullable="true" />
+          <Property Type="Int32" Name="NextAvailble" Nullable="true" />
+          <Property Type="Int32" Name="CurrentToken" Nullable="true" />
+          <Property Type="Int32" Name="Token_Id" Nullable="true" />
+          <Property Type="DateTime" Name="Today" Nullable="false" Precision="23" />
+        </ComplexType>
+        <EntityType Name="TokenComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TokenId" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Rating" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TokenPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IsPayment" Type="Boolean" />
+          <Property Name="IsFollowUp" Type="Boolean" />
+          <Property Name="TokenId" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EnqueueModelStoreContainer" CdmEntityContainer="EnqueueEntities">
+          <EntitySetMapping Name="Consumers">
+            <EntityTypeMapping TypeName="EnqueueModel.Consumer">
+              <MappingFragment StoreEntitySet="Consumer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsWebUser" ColumnName="IsWebUser" />
+                <ScalarProperty Name="IsAppUser" ColumnName="IsAppUser" />
+                <ScalarProperty Name="ResetCount" ColumnName="ResetCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="EnqueueModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="ServiceProviderId" ColumnName="ServiceProviderId" />
+                <ScalarProperty Name="AllowAdvanceBooking" ColumnName="AllowAdvanceBooking" />
+                <ScalarProperty Name="TokenBookingOpen" ColumnName="TokenBookingOpen" />
+                <ScalarProperty Name="Timing1" ColumnName="Timing1" />
+                <ScalarProperty Name="Timing2" ColumnName="Timing2" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="TokenStartTime" ColumnName="TokenStartTime" />
+                <ScalarProperty Name="TokenEndTime" ColumnName="TokenEndTime" />
+                <ScalarProperty Name="ServiceStartTime" ColumnName="ServiceStartTime" />
+                <ScalarProperty Name="ServiceEndTime" ColumnName="ServiceEndTime" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="TokenLimit" ColumnName="TokenLimit" />
+                <ScalarProperty Name="iTokenCharges" ColumnName="iTokenCharges" />
+                <ScalarProperty Name="iTokenLimit" ColumnName="iTokenLimit" />
+                <ScalarProperty Name="OffDays" ColumnName="OffDays" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationHistories">
+            <EntityTypeMapping TypeName="EnqueueModel.LocationHistory">
+              <MappingFragment StoreEntitySet="LocationHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="ServiceProviderId" ColumnName="ServiceProviderId" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="BookingStartTime" ColumnName="BookingStartTime" />
+                <ScalarProperty Name="BookingEndTime" ColumnName="BookingEndTime" />
+                <ScalarProperty Name="ServiceStartTime" ColumnName="ServiceStartTime" />
+                <ScalarProperty Name="ServiceEndTime" ColumnName="ServiceEndTime" />
+                <ScalarProperty Name="ManualTokens" ColumnName="ManualTokens" />
+                <ScalarProperty Name="iTokens" ColumnName="iTokens" />
+                <ScalarProperty Name="iTokensCompleted" ColumnName="iTokensCompleted" />
+                <ScalarProperty Name="iTokensSkip" ColumnName="iTokensSkip" />
+                <ScalarProperty Name="iTokensNoShow" ColumnName="iTokensNoShow" />
+                <ScalarProperty Name="ManualTokensCompleted" ColumnName="ManualTokensCompleted" />
+                <ScalarProperty Name="ManualTokensSkip" ColumnName="ManualTokensSkip" />
+                <ScalarProperty Name="ManualTokensNoShow" ColumnName="ManualTokensNoShow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="EnqueueModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="EnqueueModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceProviders">
+            <EntityTypeMapping TypeName="EnqueueModel.ServiceProvider">
+              <MappingFragment StoreEntitySet="ServiceProvider">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceProviderOrganizations">
+            <EntityTypeMapping TypeName="EnqueueModel.ServiceProviderOrganization">
+              <MappingFragment StoreEntitySet="ServiceProviderOrganizations">
+                <ScalarProperty Name="ServiceProviderId" ColumnName="ServiceProviderId" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceProviderServices">
+            <EntityTypeMapping TypeName="EnqueueModel.ServiceProviderService">
+              <MappingFragment StoreEntitySet="ServiceProviderServices">
+                <ScalarProperty Name="ServiceProviderId" ColumnName="ServiceProviderId" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tokens">
+            <EntityTypeMapping TypeName="EnqueueModel.Token">
+              <MappingFragment StoreEntitySet="Token">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Token1" ColumnName="Token" />
+                <ScalarProperty Name="ServiceProviderId" ColumnName="ServiceProviderId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="ConsumerId" ColumnName="ConsumerId" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CheckinTime" ColumnName="CheckinTime" />
+                <ScalarProperty Name="CompletionTime" ColumnName="CompletionTime" />
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="IsiToken" ColumnName="IsiToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TokenFeedbacks">
+            <EntityTypeMapping TypeName="EnqueueModel.TokenFeedback">
+              <MappingFragment StoreEntitySet="TokenFeedback">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TokenId" ColumnName="TokenId" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TokenStatus">
+            <EntityTypeMapping TypeName="EnqueueModel.TokenStatu">
+              <MappingFragment StoreEntitySet="TokenStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CloseBooking" FunctionName="EnqueueModel.Store.CloseBooking" />
+          <FunctionImportMapping FunctionImportName="CloseSession" FunctionName="EnqueueModel.Store.CloseSession" />
+          <FunctionImportMapping FunctionImportName="CreateUpdateConsumer" FunctionName="EnqueueModel.Store.CreateUpdateConsumer" />
+          <FunctionImportMapping FunctionImportName="CreateUpdateServiceProvider" FunctionName="EnqueueModel.Store.CreateUpdateServiceProvider" />
+          <FunctionImportMapping FunctionImportName="GetLocationDetails" FunctionName="EnqueueModel.Store.GetLocationDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.GetLocationDetails_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ServiceProviderId" ColumnName="ServiceProviderId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="AllowAdvanceBooking" ColumnName="AllowAdvanceBooking" />
+                <ScalarProperty Name="TokenBookingOpen" ColumnName="TokenBookingOpen" />
+                <ScalarProperty Name="Timing1" ColumnName="Timing1" />
+                <ScalarProperty Name="Timing2" ColumnName="Timing2" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="TokenStartTime" ColumnName="TokenStartTime" />
+                <ScalarProperty Name="TokenEndTime" ColumnName="TokenEndTime" />
+                <ScalarProperty Name="ServiceStartTime" ColumnName="ServiceStartTime" />
+                <ScalarProperty Name="ServiceEndTime" ColumnName="ServiceEndTime" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="TokenLimit" ColumnName="TokenLimit" />
+                <ScalarProperty Name="iTokenLimit" ColumnName="iTokenLimit" />
+                <ScalarProperty Name="OffDays" ColumnName="OffDays" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetLocations" FunctionName="EnqueueModel.Store.GetLocations">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.GetLocations_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Timing1" ColumnName="Timing1" />
+                <ScalarProperty Name="Timing2" ColumnName="Timing2" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="OffDays" ColumnName="OffDays" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetOrganizations" FunctionName="EnqueueModel.Store.GetOrganizations" />
+          <FunctionImportMapping FunctionImportName="GetOrganizationsMembers" FunctionName="EnqueueModel.Store.GetOrganizationsMembers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.GetOrganizationsMembers_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetServiceMembers" FunctionName="EnqueueModel.Store.GetServiceMembers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.GetServiceMembers_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetServiceProviderProfile" FunctionName="EnqueueModel.Store.GetServiceProviderProfile">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.GetServiceProviderProfile_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetServices" FunctionName="EnqueueModel.Store.GetServices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.GetServices_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="IsConsumerUserNameExists" FunctionName="EnqueueModel.Store.IsConsumerUserNameExists" />
+          <FunctionImportMapping FunctionImportName="IsServiceProviderUserNameExists" FunctionName="EnqueueModel.Store.IsServiceProviderUserNameExists" />
+          <FunctionImportMapping FunctionImportName="LoginConsumer" FunctionName="EnqueueModel.Store.LoginConsumer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.LoginConsumer_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LoginServiceProvider" FunctionName="EnqueueModel.Store.LoginServiceProvider">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.LoginServiceProvider_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RegisterConsumer" FunctionName="EnqueueModel.Store.RegisterConsumer" />
+          <FunctionImportMapping FunctionImportName="StartBooking" FunctionName="EnqueueModel.Store.StartBooking" />
+          <FunctionImportMapping FunctionImportName="StartSession" FunctionName="EnqueueModel.Store.StartSession" />
+          <FunctionImportMapping FunctionImportName="UpdateTokenFeedback" FunctionName="EnqueueModel.Store.UpdateTokenFeedback" />
+          <FunctionImportMapping FunctionImportName="UpdateTokenStatus" FunctionName="EnqueueModel.Store.UpdateTokenStatus" />
+          <FunctionImportMapping FunctionImportName="UpdateTokenStatus_Old" FunctionName="EnqueueModel.Store.UpdateTokenStatus_Old" />
+          <FunctionImportMapping FunctionImportName="GetCurrentToken" FunctionName="EnqueueModel.Store.GetCurrentToken">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.GetCurrentToken_Result">
+                <ScalarProperty Name="CurrentTokenId" ColumnName="CurrentTokenId" />
+                <ScalarProperty Name="CurrentToken" ColumnName="CurrentToken" />
+                <ScalarProperty Name="CurrentName" ColumnName="CurrentName" />
+                <ScalarProperty Name="CurrentPhone" ColumnName="CurrentPhone" />
+                <ScalarProperty Name="NextTokenId" ColumnName="NextTokenId" />
+                <ScalarProperty Name="NextToken" ColumnName="NextToken" />
+                <ScalarProperty Name="NextName" ColumnName="NextName" />
+                <ScalarProperty Name="NextPhone" ColumnName="NextPhone" />
+                <ScalarProperty Name="YourTokenId" ColumnName="YourTokenId" />
+                <ScalarProperty Name="YourToken" ColumnName="YourToken" />
+                <ScalarProperty Name="Today" ColumnName="Today" />
+                <ScalarProperty Name="NextAvailable" ColumnName="NextAvailable" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTodayTokens" FunctionName="EnqueueModel.Store.GetTodayTokens">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.GetTodayTokens_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="ServiceProviderId" ColumnName="ServiceProviderId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="ConsumerId" ColumnName="ConsumerId" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CheckinTime" ColumnName="CheckinTime" />
+                <ScalarProperty Name="CompletionTime" ColumnName="CompletionTime" />
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="IsiToken" ColumnName="IsiToken" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="IssueToken" FunctionName="EnqueueModel.Store.IssueToken">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EnqueueModel.IssueToken_Result">
+                <ScalarProperty Name="YourToken" ColumnName="YourToken" />
+                <ScalarProperty Name="NextAvailble" ColumnName="NextAvailble" />
+                <ScalarProperty Name="CurrentToken" ColumnName="CurrentToken" />
+                <ScalarProperty Name="Token_Id" ColumnName="Token_Id" />
+                <ScalarProperty Name="Today" ColumnName="Today" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="TokenComments">
+            <EntityTypeMapping TypeName="EnqueueModel.TokenComment">
+              <MappingFragment StoreEntitySet="TokenComments">
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TokenId" ColumnName="TokenId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TokenPayments">
+            <EntityTypeMapping TypeName="EnqueueModel.TokenPayment">
+              <MappingFragment StoreEntitySet="TokenPayment">
+                <ScalarProperty Name="TokenId" ColumnName="TokenId" />
+                <ScalarProperty Name="IsFollowUp" ColumnName="IsFollowUp" />
+                <ScalarProperty Name="IsPayment" ColumnName="IsPayment" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

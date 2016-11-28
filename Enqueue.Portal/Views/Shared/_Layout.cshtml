@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Health Care, health" />
+    <meta name="description" content="Health Care HTML Template" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- favicon links -->
+    <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+    <!--Google web fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+    <!-- main css -->
+    <link rel="stylesheet" href="~/Content/main.css" media="screen" />
+    <link rel="stylesheet" id="theme-color" type="text/css" href="#" />
+    <link href="~/Content/color/enqueue.css" rel="stylesheet" />
+    <!--page title-->
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+@*ng-app="EnqueueApp"*@
+<body data-spy="scroll" data-target="#myScrollspy">
+    @{
+        Html.RenderPartial("_Header");
+    }
+    <div>
+        @RenderBody()
+        <hr />
+
+    </div>
+
+    @{
+        Html.RenderPartial("_Footer");
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+   
+
+    <!--main js file start-->
+    <script type="text/javascript" src="~/Scripts/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/owl.carousel.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/jquery.bxslider.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/jquery.mixitup.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/smoothscroll.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/single-0.1.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/custom.js"></script>
+    @*<script src="~/Scripts/angular.js"></script>*@
+    <!--main js file end-->
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>
